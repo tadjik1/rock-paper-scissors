@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#application {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.figures {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 70%;
+}
+
+.figure {
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  opacity: .8;
+}
+
+.figure:hover {
+  opacity: 1;
+}
