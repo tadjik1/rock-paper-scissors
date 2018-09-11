@@ -15,17 +15,22 @@
 
 <body>
 <main id="application">
-    <section class="figures">
-        <div class="figure" data-id="rock">
-            <img src="images/rock.png" alt="Rock">
-        </div>
-        <div class="figure" data-id="paper">
-            <img src="images/paper.png" alt="Paper">
-        </div>
-        <div class="figure" data-id="scissors">
-            <img src="images/scissors.png" alt="Scissors">
-        </div>
-    </section>
+    <div class="game mode_pve">
+        <section class="figures">
+            <div class="figure" data-id="rock">
+                <img src="images/rock.png" alt="Rock">
+            </div>
+            <div class="figure" data-id="paper">
+                <img src="images/paper.png" alt="Paper">
+            </div>
+            <div class="figure" data-id="scissors">
+                <img src="images/scissors.png" alt="Scissors">
+            </div>
+        </section>
+    </div>
+    <div class="game mode_eve" style="display: none;">
+        <p>Simulating mode, computer versus computer.</p>
+    </div>
 </main>
 
 <script type="module" src="js/main.mjs"></script>

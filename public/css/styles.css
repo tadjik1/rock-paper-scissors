@@ -13,22 +13,49 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .figures {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 70%;
 }
 
 .figure {
-  width: 250px;
-  height: 250px;
   cursor: pointer;
   opacity: .8;
+  margin: 20px;
+  transition: opacity 1s ease-in-out;
 }
 
-.figure:hover {
+.figure.active {
+  animation: move-to-center 0.5s forwards 1s;
+}
+
+.figure.inactive {
+  opacity: 0;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure:hover:not(.inactive) {
   opacity: 1;
+}
+
+@media (max-width: 760px), (max-device-width: 480px) and (orientation: portrait) {
+  .figures {
+    flex-direction: column;
+  }
+
+  .figure {
+    margin: 0;
+  }
+}
+
+@keyframes move-to-center {
+  from {}
+  to { position: absolute; }
 }
