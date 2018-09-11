@@ -39,10 +39,10 @@ export class EventEmitter {
   }
   
   once(event, handler) {
-    const _handler = function (...args) {
+    const _handler = (...args) => {
       this.off(event, _handler);
       handler(...args);
-    }.bind(this);
+    };
     
     this.on(event, _handler);
     return this;

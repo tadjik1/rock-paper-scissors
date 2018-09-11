@@ -25,12 +25,11 @@ body {
 .figure {
   cursor: pointer;
   opacity: .8;
-  margin: 20px;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .figure.active {
-  animation: move-to-center 0.5s forwards 1s;
+  animation: move-to-center 0.5s forwards 0.5s;
 }
 
 .figure.inactive {

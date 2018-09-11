@@ -1,4 +1,6 @@
-import {MODES} from '/js/constants.mjs';
+import {MODES, RESULTS} from '/js/constants.mjs';
+import getResult from '/js/rules.mjs';
+import {sleep} from '/js/libs.mjs';
 
 class Game {
   constructor(player1, player2) {
@@ -13,7 +15,14 @@ class Game {
     };
   }
   
-  start() {}
+  getGameResult() {
+    const {move: player1Move} = this.player1;
+    const {move: player2Move} = this.player2;
+    
+    if (![player1Move, player2Move].every(Boolean)) throw new Error('Players must made moves');
+
+    return getResult(player1Move, player2Move);
+  }
 }
 
 class PVEGame extends Game {
@@ -27,16 +36,25 @@ class PVEGame extends Game {
     this.player1.on('move', this.handleHumanPlayerMove.bind(this));
   }
   
-  handleHumanPlayerMove(move) {
+  async handleHumanPlayerMove() {
     // prevent double click
     if (this.isInMove) return;
   
     this.isInMove = true;
-    this.animateMove(move);
+    await Promise.all([
+      this.animateMove(this.player1.move),
+      this.player2.getMove()
+    ]);
     
+    const result = this.getGameResult();
+    this.showResult(result);
   }
   
-  animateMove(move) {
+  showResult(result) {
+    alert(result);
+  }
+  
+  async animateMove(move) {
     document.querySelectorAll('.figure').forEach(figure => {
       if (figure.getAttribute('data-id') === move) {
         figure.classList.add('active');
@@ -44,6 +62,8 @@ class PVEGame extends Game {
         figure.classList.add('inactive');
       }
     });
+    
+    await sleep(1000);
   }
 }
 
