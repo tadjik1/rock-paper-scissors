@@ -1,12 +1,13 @@
 import getResult from './rules.mjs';
 import ComputerPlayer from './computer.mjs';
-import {RESULTS} from './constants.mjs';
+import {RESULTS, SHAPES} from './constants.mjs';
 
 export default class Game {
   constructor() {
     this.state = {
       user_input: '> ',
-      computer_player: new ComputerPlayer()
+      computer_player: new ComputerPlayer(),
+      wins: 0,
     };
 
     this.screen = document.querySelector('.screen');
@@ -36,19 +37,21 @@ export default class Game {
   }
 
   enterCommand() {
-    const cmd = this.state.user_input.slice(2).toLowerCase().trim();
-    switch (cmd) {
-      case 'rock':
-      case 'paper':
-      case 'scissors':
-        this.parseValidCommand(cmd);
-        break;
-      default:
-        this.renderWarning();
+    const user_input = this.state.user_input.slice(2).toLowerCase().trim();
+    const validCommands = Object.values(SHAPES);
+    const distances = validCommands.map(command => Levenshtein.get(command, user_input));
+    const minDistance = Math.min(...distances);
+    
+    const cmd = validCommands[distances.indexOf(minDistance)];
+    
+    if (minDistance / cmd.length < 0.3) {
+      return this.parseValidCommand(cmd, minDistance);
     }
+  
+    this.renderWarning();
   }
 
-  parseValidCommand(move) {
+  parseValidCommand(move, distance) {
     const line = document.querySelector('.user-input');
     line.classList.remove('user-input');
 
@@ -66,14 +69,27 @@ export default class Game {
         case RESULTS.DRAW:
           return `Heh, computer decided to pick ${move} as well, it's a draw.`;
         case RESULTS.WIN:
-          return `Lucker, you beat computer 'cause it plays ${computerMove}.`;
+          this.state.wins += 1;
+          let msg = `NO WAY, YOU DID IT!!! You beat computer 'cause it plays ${computerMove}.`;
+          if (this.state.wins >= 3) {
+            msg += ` Your current streak is ${this.state.wins} wins, keep going.`;
+          }
+          return msg;
         case RESULTS.LOOSE:
-          return `You suck! Computer beats you with ${computerMove}.`;
+          this.state.wins = 0;
+          return `Looser! Computer beats you with ${computerMove}.`;
       }
     })();
 
+    const typoMsg = distance === 0
+      ? ''
+      : `<p class="text system-message">
+            It seems you have made a small typo, nevermind! We guess you mean ${move}.
+          </p>`;
+    
     const newLines = `
       <div class="line">
+        ${typoMsg}
         <p class="text system-message ${colorMap[result]}">${resultStr}</p>
       </div>
       <div class="line">
@@ -82,12 +98,11 @@ export default class Game {
     ;
 
     this.screen.insertAdjacentHTML('beforeend', newLines);
-
     this.state.user_input = '> ';
   }
 
-  addCharacter(charachter) {
-    this.state.user_input += charachter;
+  addCharacter(character) {
+    this.state.user_input += character;
   }
 
   render() {
