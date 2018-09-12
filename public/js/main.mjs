@@ -85,7 +85,6 @@ function addCharacter(charachter) {
 
 function render() {
   const line = document.querySelector('.user-input');
-  line.style.width = `${state.user_input.length - 1}em`;
   line.textContent = state.user_input;
 
   screen.scrollTop = screen.scrollHeight;
@@ -98,11 +97,17 @@ document.querySelector('.initial').addEventListener('animationend', e => {
   const inputStyle = window.getComputedStyle(input);
 
   const el = inputStyle.display === 'block' ? input : document;
-  if (el === input) el.focus();
+  if (el === input) {
+    function handler(e) {
+      document.removeEventListener('click', handler);
+      input.focus();
+    }
+    document.addEventListener('click', handler);
+  }
 
   el.addEventListener('keydown', e => {
     const keycode = e.keyCode;
-
+    console.log(e);
     const isPrintableKey = (() => {
       return (
         (keycode > 64 && keycode < 91) &&

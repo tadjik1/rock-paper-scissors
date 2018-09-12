@@ -83,7 +83,13 @@ body {
   white-space: nowrap;
   overflow: hidden;
   letter-spacing: .15em;
-  width: 0;
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.text.welcome {
+  display: block;
+  width: 1em;
 }
 
 .loading {
@@ -119,7 +125,6 @@ body {
 }
 
 .user-input {
-  width: 1em;
   border-right: .3em solid #ffffff;
   animation:
     blink-caret .75s step-end infinite;
