@@ -1,5 +1,5 @@
-import {SHAPES} from '/js/constants.mjs';
-import {sample, getRandomInt} from '/js/libs.mjs';
+import {SHAPES} from './constants.mjs';
+import {sample} from './libs.mjs';
 
 export default class ComputerPlayer {
   getMove() {

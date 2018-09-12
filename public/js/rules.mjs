@@ -1,4 +1,4 @@
-import {SHAPES, RESULTS} from '/js/constants.mjs';
+import {SHAPES, RESULTS} from './constants.mjs';
 
 /*
 * Set of rules.
