@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #272727;
   margin: 0;
@@ -15,6 +19,8 @@ body {
 
 .terminal {
   width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 .top-menu {
@@ -139,7 +145,7 @@ body {
 
 @keyframes typing {
   from { width: 1em }
-  to { width: 24em }
+  to { width: 25em }
 }
 
 @keyframes blink-caret {
@@ -152,36 +158,30 @@ body {
   to { opacity: 1; }
 }
 
-#mobile-only {
+.mobile {
   display: none;
+  opacity: 0;
 }
 
-@media
-only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait),
-only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
+.controls {
+  background-color: #c7c7c7;
+  color: #000000;
+  height: 40px;
+  font-size: 1.5em;
+  display: flex;
+}
 
-  .container {
-    height: 100vw;
-    width: 100vh;
-  }
+.control {
+  width: 100%;
+  text-align: center;
+  border: 1px solid #272727;
 }
 
 @media
 only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
-  #mobile-only {
-    position: absolute;
-    left: -1000px;
-    top: -1000px;
-    display: block !important;
+  .mobile {
+    display: block;
+    animation: fade-in .2s 6.5s linear forwards;
   }
 
   .container {

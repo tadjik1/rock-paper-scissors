@@ -9,11 +9,6 @@ export const SHAPES = {
   SCISSORS: 'scissors'
 };
 
-export const PLAYER_TYPES = {
-  HUMAN: 'human',
-  COMPUTER: 'computer'
-};
-
 export const RESULTS = {
   DRAW: 'draw',
   WIN: 'win',

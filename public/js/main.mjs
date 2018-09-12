@@ -1,3 +1,5 @@
+import '/js/polyfill.mjs';
+
 import getResult from '/js/rules.mjs';
 import ComputerPlayer from '/js/computer.mjs';
 import {RESULTS} from './constants.mjs';
@@ -20,7 +22,7 @@ function renderWarning() {
 
   const newLines = `
 <div class="line">
-  <p class="text system-message">Are you kidding? There are only rock, paper and scissors in this game!</p>
+  <p class="text system-message">There are only rock, paper and scissors in this game!</p>
 </div>
 <div class="line">
     <p class="text user-input">${state.user_input}</p>
@@ -93,39 +95,40 @@ function render() {
 document.querySelector('.initial').addEventListener('animationend', e => {
   if (e.animationName !== 'fade-in') return;
 
-  const input = document.getElementById('mobile-only');
-  const inputStyle = window.getComputedStyle(input);
+  const controls = document.querySelector('.mobile');
+  const controlsStyle = window.getComputedStyle(controls);
 
-  const el = inputStyle.display === 'block' ? input : document;
-  if (el === input) {
-    function handler(e) {
-      document.removeEventListener('click', handler);
-      input.focus();
-    }
-    document.addEventListener('click', handler);
+  if (controlsStyle.display === 'block') {
+    document.querySelector('.controls').addEventListener('click', e => {
+      if (!event.target.closest('.control')) return;
+      const cmd = event.target.closest('.control').getAttribute('data-id');
+      state.user_input += cmd;
+      render();
+      enterCommand();
+      render();
+    });
+  } else {
+    document.addEventListener('keydown', e => {
+      const keycode = e.keyCode;
+      const isPrintableKey = (() => {
+        return (
+          (keycode > 64 && keycode < 91) &&
+          (!e.metaKey && !e.ctrlKey && !e.altKey)
+        );
+      })();
+
+      switch (keycode) {
+        case 8:
+          removeCharacter();
+          break;
+        case 13:
+          enterCommand();
+          break;
+        default:
+          if (isPrintableKey) addCharacter(e.key);
+      }
+
+      render();
+    });
   }
-
-  el.addEventListener('keydown', e => {
-    const keycode = e.keyCode;
-    console.log(e);
-    const isPrintableKey = (() => {
-      return (
-        (keycode > 64 && keycode < 91) &&
-        (!e.metaKey && !e.ctrlKey && !e.altKey)
-      );
-    })();
-
-    switch (keycode) {
-      case 8:
-        removeCharacter();
-        break;
-      case 13:
-        enterCommand();
-        break;
-      default:
-        if (isPrintableKey) addCharacter(e.key);
-    }
-
-    render();
-  });
 });
