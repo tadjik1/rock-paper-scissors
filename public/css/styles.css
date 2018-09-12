@@ -1,6 +1,7 @@
 body {
   background-color: #272727;
   margin: 0;
+  font-family: monospace;
 }
 
 .container {
@@ -12,8 +13,12 @@ body {
   align-items: center;
 }
 
-.top-menu {
+.terminal {
   width: 50%;
+}
+
+.top-menu {
+  width: 100%;
   box-sizing: border-box;
   height: 25px;
   background-color: #c7c7c7;
@@ -51,11 +56,19 @@ body {
   vertical-align: sub;
 }
 
-.screen {
+.screen-container {
   background-color: #151515;
   box-sizing: border-box;
-  width: 50%;
+  overflow: hidden;
+  width: 100%;
   height: 400px;
+}
+
+.screen {
+  width: 100%;
+  height: 350px;
+  overflow-y: scroll;
+  box-sizing: content-box;
   padding: 20px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -63,27 +76,60 @@ body {
 
 .line {
   color: #9CD9F0;
+  max-width: 90%;
 }
 
 .text {
-  font-family: monospace;
   white-space: nowrap;
   overflow: hidden;
   letter-spacing: .15em;
+  width: 0;
+}
+
+.loading {
   width: 1em;
   border-right: .3em solid #ffffff;
   animation:
-      typing 3.5s linear forwards,
+      typing 3.5s 1s steps(20, end) forwards,
+      blink-caret .75s .5s 6 forwards;
+}
+
+.system-message {
+  white-space: normal;
+  width: 100%;
+}
+
+.greeting {
+  opacity: 0;
+  animation:
+    fade-in .2s 6s linear forwards;
+}
+
+.user-input {
+  width: 1em;
+  border-right: .3em solid #ffffff;
+  animation:
+    blink-caret .75s step-end infinite;
+}
+
+.user-input.initial {
+  opacity: 0;
+  animation:
+      fade-in .2s 6.5s linear forwards,
       blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0 }
+  from { width: 1em }
   to { width: 24em }
 }
 
-/* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: #ffffff; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

@@ -14,17 +14,29 @@
 
 <body>
 <div class="container">
-    <div class="top-menu">
-        <div class="button close"></div>
-        <div class="button minimize"></div>
-        <div class="button zoom"></div>
-        <span class="title">Rock Paper Scissors</span>
-    </div>
-    <div class="screen">
-        <div class="line">
-            <p class="text">$ ./rock-paper-scissors new_game</p>
+    <div class="terminal">
+        <div class="top-menu">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button zoom"></div>
+            <span class="title">Rock Paper Scissors</span>
+        </div>
+        <div class="screen-container">
+            <div class="screen">
+                <div class="line">
+                    <p class="text loading">$ ./rock-paper-scissors new_game</p>
+                </div>
+                <div class="line">
+                    <p class="text system-message greeting">Hello from Rock Paper Scissors game. Please type your move.</p>
+                </div>
+                <div class="line">
+                    <p class="text initial user-input">> </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script type="module" src="js/main.mjs"></script>
 </body>
 </html>
