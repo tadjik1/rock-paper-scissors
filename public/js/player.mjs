@@ -1,9 +1,7 @@
 import {SHAPES, PLAYER_TYPES} from '/js/constants.mjs';
 import {sample, sleep, getRandomInt, EventEmitter} from '/js/libs.mjs';
 
-class Player extends EventEmitter {
-  async getMove() {}
-}
+class Player extends EventEmitter {}
 
 class ComputerPlayer extends Player {
   constructor() {
@@ -11,8 +9,7 @@ class ComputerPlayer extends Player {
     this.move = null;
   }
   
-  async getMove() {
-    await sleep(getRandomInt(200, 400));
+  getMove() {
     this.move = SHAPES[sample(Object.keys(SHAPES))];
   }
 }
@@ -20,7 +17,7 @@ class ComputerPlayer extends Player {
 class HumanPlayer extends Player {
   constructor() {
     super();
-  
+
     this.move = null;
     document.querySelector('.figures').addEventListener('click', this.onFigureClick.bind(this));
   }

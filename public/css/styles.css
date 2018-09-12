@@ -25,11 +25,8 @@ body {
 .figure {
   cursor: pointer;
   opacity: .8;
+  margin: 20px;
   transition: opacity 0.5s ease-in-out;
-}
-
-.figure.active {
-  animation: move-to-center 0.5s forwards 0.5s;
 }
 
 .figure.inactive {
@@ -44,6 +41,30 @@ body {
   opacity: 1;
 }
 
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal_content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 20%;
+}
+
+.play_again {
+  cursor: pointer;
+}
+
 @media (max-width: 760px), (max-device-width: 480px) and (orientation: portrait) {
   .figures {
     flex-direction: column;
@@ -52,9 +73,4 @@ body {
   .figure {
     margin: 0;
   }
-}
-
-@keyframes move-to-center {
-  from {}
-  to { position: absolute; }
 }

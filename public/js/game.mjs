@@ -19,7 +19,8 @@ class Game {
     const {move: player1Move} = this.player1;
     const {move: player2Move} = this.player2;
     
-    if (![player1Move, player2Move].every(Boolean)) throw new Error('Players must made moves');
+    if (![player1Move, player2Move].every(Boolean))
+      throw new Error('Players must made moves');
 
     return getResult(player1Move, player2Move);
   }
@@ -41,10 +42,9 @@ class PVEGame extends Game {
     if (this.isInMove) return;
   
     this.isInMove = true;
-    await Promise.all([
-      this.animateMove(this.player1.move),
-      this.player2.getMove()
-    ]);
+    this.player2.getMove();
+
+    await this.animateMove(this.player1.move);
     
     const result = this.getGameResult();
     this.showResult(result);
@@ -63,7 +63,7 @@ class PVEGame extends Game {
       }
     });
     
-    await sleep(1000);
+    await sleep(500);
   }
 }
 
