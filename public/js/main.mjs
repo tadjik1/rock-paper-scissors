@@ -49,20 +49,26 @@ function parseValidCommand(move) {
   const computerMove = state.computer_player.getMove();
   const result = getResult(move, computerMove);
 
+  const colorMap = {
+    [RESULTS.WIN]: 'green',
+    [RESULTS.DRAW]: 'grey',
+    [RESULTS.LOOSE]: 'red',
+  };
+
   const resultStr = (() => {
     switch (result) {
       case RESULTS.DRAW:
-        return `Heh, computer decided to pick ${move} as well, it's draw.`;
+        return `Heh, computer decided to pick ${move} as well, it's a draw.`;
       case RESULTS.WIN:
         return `Lucker, you beat computer 'cause it plays ${computerMove}.`;
       case RESULTS.LOOSE:
-        return `You suck! Computer beat you with ${computerMove}.`;
+        return `You suck! Computer beats you with ${computerMove}.`;
     }
   })();
 
   const newLines = `
 <div class="line">
-  <p class="text system-message">${resultStr}</p>
+  <p class="text system-message ${colorMap[result]}">${resultStr}</p>
 </div>
 <div class="line">
     <p class="text user-input">> </p>

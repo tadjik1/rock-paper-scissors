@@ -99,6 +99,19 @@ body {
   width: 100%;
 }
 
+.system-message.green {
+  color: #CDEE69;
+}
+.system-message.grey {
+  color: #CDCDCD;
+}
+.system-message.red {
+  color: #E09690;
+}
+.system-message.white {
+  color: #FFFFFF;
+}
+
 .greeting {
   opacity: 0;
   animation:
