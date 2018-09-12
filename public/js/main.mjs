@@ -94,10 +94,15 @@ function render() {
 document.querySelector('.initial').addEventListener('animationend', e => {
   if (e.animationName !== 'fade-in') return;
 
-  document.addEventListener('keydown', e => {
+  const input = document.getElementById('mobile-only');
+  const inputStyle = window.getComputedStyle(input);
+
+  const el = inputStyle.display === 'block' ? input : document;
+  if (el === input) el.focus();
+
+  el.addEventListener('keydown', e => {
     const keycode = e.keyCode;
 
-    console.log(e);
     const isPrintableKey = (() => {
       return (
         (keycode > 64 && keycode < 91) &&
