@@ -1,76 +1,89 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  padding: 0;
+  background-color: #272727;
   margin: 0;
 }
 
-#application {
-  height: 100vh;
+.container {
   width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-.figures {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.top-menu {
+  width: 50%;
+  box-sizing: border-box;
+  height: 25px;
+  background-color: #c7c7c7;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  text-align: center;
 }
 
-.figure {
-  cursor: pointer;
-  opacity: .8;
-  margin: 20px;
-  transition: opacity 0.5s ease-in-out;
+.button {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 1px solid #9d252b;
+  position: relative;
+  top: 6px;
+  left: 6px;
+  background-color: #ff3b47;
+  display: inline-block;
+  float: left;
 }
 
-.figure.inactive {
-  opacity: 0;
+.minimize {
+  left: 11px;
+  background-color: #ffc100;
+  border-color: #9d802c;
 }
 
-.figure img {
-  width: 100%;
+.zoom {
+  left: 16px;
+  background-color: #00d742;
+  border-color: #049931;
 }
 
-.figure:hover:not(.inactive) {
-  opacity: 1;
+.title {
+  vertical-align: sub;
 }
 
-.modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.modal_content {
-  background-color: #fefefe;
-  margin: 15% auto;
+.screen {
+  background-color: #151515;
+  box-sizing: border-box;
+  width: 50%;
+  height: 400px;
   padding: 20px;
-  border: 1px solid #888;
-  border-radius: 8px;
-  width: 20%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-.play_again {
-  cursor: pointer;
+.line {
+  color: #9CD9F0;
 }
 
-@media (max-width: 760px), (max-device-width: 480px) and (orientation: portrait) {
-  .figures {
-    flex-direction: column;
-  }
+.text {
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: .15em;
+  width: 1em;
+  border-right: .3em solid #ffffff;
+  animation:
+      typing 3.5s linear forwards,
+      blink-caret .75s step-end infinite;
+}
 
-  .figure {
-    margin: 0;
-  }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 24em }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ffffff; }
 }

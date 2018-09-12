@@ -8,40 +8,23 @@
     <meta name="description" content="The Rock-Paper-Scissors game. Play online!">
     <meta name="author" content="Sergey Zelenov">
 
-    <link rel="stylesheet" href="https://yarnpkg.com/en/package/normalize.css">
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
 </head>
 
 <body>
-<main id="application">
-    <div class="game mode_pve">
-        <section class="figures">
-            <div class="figure" data-id="rock">
-                <img src="images/rock.png" alt="Rock">
-            </div>
-            <div class="figure" data-id="paper">
-                <img src="images/paper.png" alt="Paper">
-            </div>
-            <div class="figure" data-id="scissors">
-                <img src="images/scissors.png" alt="Scissors">
-            </div>
-        </section>
+<div class="container">
+    <div class="top-menu">
+        <div class="button close"></div>
+        <div class="button minimize"></div>
+        <div class="button zoom"></div>
+        <span class="title">Rock Paper Scissors</span>
     </div>
-    <div class="game mode_eve" style="display: none;">
-        <p>Simulating mode, computer versus computer.</p>
-    </div>
-</main>
-
-<div class="modal">
-    <div class="modal_content">
-        <p class="result">You win (computer's pick - Rock)</p>
-        <div class="play_again">
-            <img src="images/play_again.png" align="Play again" />
+    <div class="screen">
+        <div class="line">
+            <p class="text">$ ./rock-paper-scissors new_game</p>
         </div>
     </div>
 </div>
-
-<script type="module" src="js/main.mjs"></script>
 </body>
 </html>
