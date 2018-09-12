@@ -49,7 +49,9 @@ This means that now you can open `http://127.0.0.1:8080` your browser and work w
 ### Development
 
 This application was written using plain JS, CSS and HTML so nothing special requires for developing it.
-Open cloned folder in your favorite editor and start hacking!
+Open cloned folder in your favorite editor and start hacking! The only library that has been used is 
+[fast-levenshtein](https://github.com/hiddentao/fast-levenshtein) for getting Levenshtein distance between 
+commands and users' input.
 
 ### Running the tests
 

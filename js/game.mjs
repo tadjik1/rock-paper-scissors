@@ -43,8 +43,10 @@ export default class Game {
     const minDistance = Math.min(...distances);
     
     const cmd = validCommands[distances.indexOf(minDistance)];
+    const DISTANCE_THRESHOLD = 0.3;
     
-    if (minDistance / cmd.length < 0.3) {
+    // if normalized Levenshtein distance is bellow threshold we are able to recognise command
+    if (minDistance / cmd.length < DISTANCE_THRESHOLD) {
       return this.parseValidCommand(cmd, minDistance);
     }
   
