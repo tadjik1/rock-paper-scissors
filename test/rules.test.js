@@ -1,6 +1,6 @@
 import assert from 'assert';
-import getResults from '../public/js/rules';
-import {SHAPES, RESULTS} from '../public/js/constants';
+import getResults from '../js/rules';
+import {SHAPES, RESULTS} from '../js/constants';
 
 describe('rules test cases', () => {
   it('scissors should beat paper', () => {

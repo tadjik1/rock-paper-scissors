@@ -1,6 +1,6 @@
 import assert from 'assert';
-import {sample} from '../public/js/libs';
-import {SHAPES} from '../public/js/constants';
+import {sample} from '../js/libs';
+import {SHAPES} from '../js/constants';
 
 describe('libs test cases', () => {
   describe('sample test cases', () => {
