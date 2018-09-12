@@ -200,6 +200,6 @@ only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
   }
 
   .screen {
-    height: 95%;
+    height: 9%;
   }
 }
